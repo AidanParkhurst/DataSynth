@@ -19,7 +19,7 @@
         </div>
         <div class="links">
             <a href="/">About</a>
-            <a href="/">Demo</a>
+            <a href="/demo">Demo</a>
             <a href="/team">Team</a>
             <a href="/contact">Contact</a>
         </div>
@@ -37,15 +37,14 @@
         </div>
         <div class="links">
             <a href="/">About</a>
-            <a href="/">Demo</a>
-            <a href="/">Team</a>
-            <a href="/">Contact</a>
+            <a href="/demo">Demo</a>
+            <a href="/team">Team</a>
+            <a href="/contact">Contact</a>
         </div>
     </div>
 </body>
 
 <style>
-
     body {
         position:absolute;
         width: 100%;
