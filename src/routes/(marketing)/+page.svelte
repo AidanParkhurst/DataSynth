@@ -66,6 +66,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
 
+        opacity: 0;
         animation: appear 1s ease forwards;
         
     }

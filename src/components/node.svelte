@@ -2,10 +2,20 @@
     import { createEventDispatcher } from "svelte";
     let dispatch = createEventDispatcher();
 
-    export let node = { id: 0, x: 0, y: 0 };
+    export let node = {
+        id: 0,
+        x: 0,
+        y: 0,
+        type: "Dense",
+        scale: 10,
+        transform: "Sigmoid"
+    };
     
     let deleteNode = () => {
         dispatch('delete', node.id);
+    };
+    let selectNode = () => {
+        dispatch('select', node.id);
     };
 
     $: nodeStyle = `
@@ -13,6 +23,7 @@
         left: calc(${node.x}px - 50px);
     `;
 
+    /* TODO: Custom dragging instead of draggable=true, to avoid the default drag behavior */
     let dragStartX, dragStartY;
     let handleDragStart = (e) => {
       dragStartX = e.clientX;
@@ -39,20 +50,20 @@
     role="button"
     tabindex="0"
     >
-    <div class="node">
+    <div class="node" role="button" tabindex="0">
         <div class="info">
             <h2>Layer {node.id}</h2>
             <div class="stat">
                 <h4>Type</h4>
-                <h3>Recurrent</h3>
+                <h3>{node.type}</h3>
             </div>
             <div class="stat">
                 <h4>Scale</h4>
-                <h3>10</h3>
+                <h3>{node.scale}</h3>
             </div>
             <div class="stat">
                 <h4>Transform</h4>
-                <h3>Sigmoid</h3>
+                <h3>{node.transform}</h3>
             </div>
         </div>
         <div class="buttons">
@@ -68,7 +79,7 @@
                     </path>
                 </svg>
             </button>
-            <button class="config">
+            <button class="config" on:click={selectNode}>
                 <!--SVG Hamburger Icon-->
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon"
                     stroke="var(--secondary-color)"
